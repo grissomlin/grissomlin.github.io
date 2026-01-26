@@ -2,12 +2,51 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <title>量化交易自動化平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok API 授權測試</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background-color: #f4f4f9; }
+        .container { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 80%; word-break: break-all; }
+        h1 { color: #fe2c55; }
+        .code-box { background: #eee; padding: 10px; border: 1px dashed #666; margin-top: 10px; font-family: monospace; }
+        .copy-btn { margin-top: 10px; padding: 8px 16px; cursor: pointer; background: #fe2c55; color: white; border: none; border-radius: 4px; }
+    </style>
 </head>
 <body>
-    <h1>量化交易分析與自動化影音工具</h1>
-    <p>這是用於開發量化分析腳本與自動化社群媒體發佈工具的官方網站。</p>
-    <hr>
-    <a href="privacy.html">隱私權政策 (Privacy Policy)</a>
+
+<div class="container">
+    <h1>TikTok 授權回傳測試</h1>
+    <div id="content">正在檢查網址中的 code...</div>
+</div>
+
+<script>
+    // 解析網址列參數
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+    const state = urlParams.get('state');
+
+    const contentDiv = document.getElementById('content');
+
+    if (code) {
+        contentDiv.innerHTML = `
+            <p>✅ 成功取得 <strong>Authorization Code</strong>：</p>
+            <div class="code-box" id="authCode">${code}</div>
+            <button class="copy-btn" onclick="copyCode()">複製 Code</button>
+            <p><small>State: ${state || '無'}</small></p>
+            <p style="color: gray;">現在你可以把這串 Code 拿去跑 Python/Node.js 換取 Access Token 了！</p>
+        `;
+    } else {
+        contentDiv.innerHTML = `
+            <p>目前網址中沒有 code。</p>
+            <p>請確認你是從 TikTok 授權頁面跳轉回來的。</p>
+        `;
+    }
+
+    function copyCode() {
+        const text = document.getElementById('authCode').innerText;
+        navigator.clipboard.writeText(text).then(() => alert('Code 已複製！'));
+    }
+</script>
+
 </body>
 </html>
