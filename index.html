@@ -3,62 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>您的 App 名稱 - 官方網站</title>
+    <title>您的 App 名稱 - Official Website</title>
     <style>
-        /* 基礎樣式優化 */
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; color: #333; background-color: #f9f9f9; }
-        header { background: #000; color: white; padding: 2rem; text-align: center; }
-        .container { max-width: 800px; margin: 2rem auto; padding: 2rem; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        h1 { color: #fe2c55; margin-top: 0; }
-        p { line-height: 1.6; color: #666; }
+        :root { --tiktok-red: #fe2c55; --tiktok-black: #010101; }
+        body { font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif; margin: 0; padding: 0; color: #333; background-color: #fcfcfc; line-height: 1.6; }
         
-        /* 產品介紹樣式 (預設顯示) */
-        #product-info { display: block; }
-        .feature-list { list-style: none; padding: 0; }
-        .feature-list li { background: #fff5f6; margin-bottom: 10px; padding: 15px; border-radius: 8px; border-left: 5px solid #fe2c55; }
+        /* 導覽列 */
+        nav { background: white; padding: 1rem 10%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); sticky: top; }
+        .logo { font-weight: bold; font-size: 1.5rem; color: var(--tiktok-black); }
         
-        /* 測試數據樣式 (預設隱藏) */
-        #debug-info { display: none; border: 2px solid #fe2c55; padding: 20px; border-radius: 8px; background: #fff; }
-        .code-box { background: #f4f4f4; padding: 15px; border: 1px solid #ddd; font-family: monospace; word-break: break-all; margin: 10px 0; border-radius: 4px; }
-        .copy-btn { padding: 10px 20px; cursor: pointer; background: #fe2c55; color: white; border: none; border-radius: 4px; font-weight: bold; }
+        /* 英雄區 */
+        header { background: var(--tiktok-black); color: white; padding: 4rem 1rem; text-align: center; }
+        header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; color: white; }
+        header p { font-size: 1.2rem; opacity: 0.8; }
+
+        .container { max-width: 900px; margin: -3rem auto 3rem; padding: 2.5rem; background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         
-        footer { text-align: center; margin-top: 50px; padding: 20px; color: #999; font-size: 0.9rem; border-top: 1px solid #eee; }
-        footer a { color: #fe2c55; text-decoration: none; margin: 0 10px; }
+        /* 中英對照樣式 */
+        .lang-pair { margin-bottom: 1.5rem; }
+        .en { color: #888; font-size: 0.95rem; display: block; margin-top: 4px; }
+        
+        h2, h3 { color: var(--tiktok-black); border-left: 4px solid var(--tiktok-red); padding-left: 12px; }
+
+        /* 功能列表 */
+        .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 2rem; }
+        .feature-card { background: #fff8f9; padding: 20px; border-radius: 12px; border: 1px solid #ffeef0; }
+        .feature-card strong { color: var(--tiktok-red); font-size: 1.1rem; }
+
+        /* 調試區域 (預設隱藏) */
+        #debug-info { display: none; background: #f0fff4; border: 2px dashed #28a745; padding: 25px; border-radius: 12px; margin-top: 20px; }
+        .code-box { background: white; padding: 15px; border: 1px solid #ddd; font-family: 'Courier New', monospace; word-break: break-all; margin: 15px 0; border-radius: 6px; font-size: 14px; }
+        .copy-btn { width: 100%; padding: 12px; cursor: pointer; background: var(--tiktok-red); color: white; border: none; border-radius: 6px; font-size: 1rem; font-weight: bold; transition: opacity 0.2s; }
+        .copy-btn:hover { opacity: 0.9; }
+
+        footer { text-align: center; padding: 3rem 1rem; color: #999; font-size: 0.9rem; }
+        footer a { color: var(--tiktok-red); text-decoration: none; margin: 0 10px; font-weight: 500; }
+        
+        @media (max-width: 600px) { .feature-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
+<nav>
+    <div class="logo">您的 App 名稱</div>
+    <div>
+        <a href="privacy.html" style="margin-right:15px; text-decoration:none; color:#666;">Privacy</a>
+        <a href="terms.html" style="text-decoration:none; color:#666;">Terms</a>
+    </div>
+</nav>
+
 <header>
-    <h1>您的 App 名稱</h1>
-    <p>連結內容創作，開啟全新體驗</p>
+    <h1>您的 App 名稱 / App Name</h1>
+    <p>連結內容創作，開啟全新體驗 <br> <span style="font-size: 0.9rem;">Empowering Content Creators Worldwide</span></p>
 </header>
 
 <div class="container">
     <div id="product-info">
-        <h2>關於我們的 App</h2>
-        <p>這是一個專為 TikTok 創作者打造的智能分析與數據整合工具。我們致力於提供最流暢的授權體驗與數據安全保障。</p>
+        <div class="lang-pair">
+            <h2>關於我們的 App / About Us</h2>
+            <p>這是一個專為 TikTok 創作者打造的智能分析與數據整合工具。我們致力於提供最流暢的授權體驗與數據安全保障。</p>
+            <span class="en">An intelligent data integration tool built for TikTok creators, providing a seamless authorization experience with industry-leading security.</span>
+        </div>
         
-        <h3>核心功能</h3>
-        <ul class="feature-list">
-            <li>🚀 <strong>快速授權：</strong> 一鍵連結您的 TikTok 帳號。</li>
-            <li>📊 <strong>數據分析：</strong> 即時獲取內容表現與趨勢。</li>
-            <li>🔒 <strong>安全可靠：</strong> 嚴格遵守 TikTok API 隱私規範。</li>
-        </ul>
+        <h3>核心功能 / Core Features</h3>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <strong>🚀 快速授權 / Quick Auth</strong>
+                <p>一鍵連結您的 TikTok 帳號。<span class="en">Connect your TikTok account in one click.</span></p>
+            </div>
+            <div class="feature-card">
+                <strong>📊 數據分析 / Analytics</strong>
+                <p>即時獲取內容表現趨勢。<span class="en">Real-time tracking of content performance.</span></p>
+            </div>
+            <div class="feature-card">
+                <strong>🔒 安全可靠 / Security</strong>
+                <p>嚴格遵守 API 隱私規範。<span class="en">Strictly following API privacy standards.</span></p>
+            </div>
+            <div class="feature-card">
+                <strong>⚡️ 自動化 / Automation</strong>
+                <p>簡化您的創作工作流。<span class="en">Simplify your creative workflow.</span></p>
+            </div>
+        </div>
     </div>
 
     <div id="debug-info">
-        <h2 style="color: #28a745;">✅ 授權測試回傳成功</h2>
-        <p>檢測到 Authorization Code，請複製以下資訊進行後端開發：</p>
+        <h2 style="color: #28a745; border-color: #28a745;">✅ 授權回傳成功 / Auth Success</h2>
+        <p>檢測到 Authorization Code：</p>
         <div class="code-box" id="authCode"></div>
-        <p><small id="stateInfo"></small></p>
-        <button class="copy-btn" onclick="copyCode()">複製 Authorization Code</button>
+        <p><small id="stateInfo" style="color:#666;"></small></p>
+        <button class="copy-btn" onclick="copyCode()">複製授權碼 / Copy Code</button>
     </div>
 </div>
 
 <footer>
     <p>&copy; 2024 YourTeam. All Rights Reserved.</p>
-    <a href="privacy.html">Privacy Policy</a> | 
-    <a href="terms.html">Terms of Service</a>
+    <div style="margin-top: 10px;">
+        <a href="privacy.html">Privacy Policy 隱私權政策</a>
+        <a href="terms.html">Terms of Service 服務條款</a>
+    </div>
 </footer>
 
 <script>
@@ -67,7 +109,6 @@
     const state = urlParams.get('state');
 
     if (code) {
-        // 如果網址有 code，隱藏介紹，顯示測試結果
         document.getElementById('product-info').style.display = 'none';
         document.getElementById('debug-info').style.display = 'block';
         document.getElementById('authCode').innerText = code;
@@ -78,7 +119,11 @@
 
     function copyCode() {
         const text = document.getElementById('authCode').innerText;
-        navigator.clipboard.writeText(text).then(() => alert('Code 已複製！'));
+        navigator.clipboard.writeText(text).then(() => {
+            const btn = document.querySelector('.copy-btn');
+            btn.innerText = '✅ 已複製 / Copied!';
+            setTimeout(() => { btn.innerText = '複製授權碼 / Copy Code'; }, 2000);
+        });
     }
 </script>
 
