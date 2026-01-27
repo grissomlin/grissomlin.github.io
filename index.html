@@ -3,43 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TikTok API 授權測試</title>
+    <title>您的 App 名稱 - 官方網站</title>
     <style>
-        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background-color: #f4f4f9; }
-        .container { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 80%; word-break: break-all; }
-        h1 { color: #fe2c55; }
-        .code-box { background: #eee; padding: 10px; border: 1px dashed #666; margin-top: 10px; font-family: monospace; }
-        .copy-btn { margin-top: 10px; padding: 8px 16px; cursor: pointer; background: #fe2c55; color: white; border: none; border-radius: 4px; }
+        /* 基礎樣式優化 */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; color: #333; background-color: #f9f9f9; }
+        header { background: #000; color: white; padding: 2rem; text-align: center; }
+        .container { max-width: 800px; margin: 2rem auto; padding: 2rem; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        h1 { color: #fe2c55; margin-top: 0; }
+        p { line-height: 1.6; color: #666; }
+        
+        /* 產品介紹樣式 (預設顯示) */
+        #product-info { display: block; }
+        .feature-list { list-style: none; padding: 0; }
+        .feature-list li { background: #fff5f6; margin-bottom: 10px; padding: 15px; border-radius: 8px; border-left: 5px solid #fe2c55; }
+        
+        /* 測試數據樣式 (預設隱藏) */
+        #debug-info { display: none; border: 2px solid #fe2c55; padding: 20px; border-radius: 8px; background: #fff; }
+        .code-box { background: #f4f4f4; padding: 15px; border: 1px solid #ddd; font-family: monospace; word-break: break-all; margin: 10px 0; border-radius: 4px; }
+        .copy-btn { padding: 10px 20px; cursor: pointer; background: #fe2c55; color: white; border: none; border-radius: 4px; font-weight: bold; }
+        
+        footer { text-align: center; margin-top: 50px; padding: 20px; color: #999; font-size: 0.9rem; border-top: 1px solid #eee; }
+        footer a { color: #fe2c55; text-decoration: none; margin: 0 10px; }
     </style>
 </head>
 <body>
 
+<header>
+    <h1>您的 App 名稱</h1>
+    <p>連結內容創作，開啟全新體驗</p>
+</header>
+
 <div class="container">
-    <h1>TikTok 授權回傳測試</h1>
-    <div id="content">正在檢查網址中的 code...</div>
+    <div id="product-info">
+        <h2>關於我們的 App</h2>
+        <p>這是一個專為 TikTok 創作者打造的智能分析與數據整合工具。我們致力於提供最流暢的授權體驗與數據安全保障。</p>
+        
+        <h3>核心功能</h3>
+        <ul class="feature-list">
+            <li>🚀 <strong>快速授權：</strong> 一鍵連結您的 TikTok 帳號。</li>
+            <li>📊 <strong>數據分析：</strong> 即時獲取內容表現與趨勢。</li>
+            <li>🔒 <strong>安全可靠：</strong> 嚴格遵守 TikTok API 隱私規範。</li>
+        </ul>
+    </div>
+
+    <div id="debug-info">
+        <h2 style="color: #28a745;">✅ 授權測試回傳成功</h2>
+        <p>檢測到 Authorization Code，請複製以下資訊進行後端開發：</p>
+        <div class="code-box" id="authCode"></div>
+        <p><small id="stateInfo"></small></p>
+        <button class="copy-btn" onclick="copyCode()">複製 Authorization Code</button>
+    </div>
 </div>
 
+<footer>
+    <p>&copy; 2024 YourTeam. All Rights Reserved.</p>
+    <a href="privacy.html">Privacy Policy</a> | 
+    <a href="terms.html">Terms of Service</a>
+</footer>
+
 <script>
-    // 解析網址列參數
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
     const state = urlParams.get('state');
 
-    const contentDiv = document.getElementById('content');
-
     if (code) {
-        contentDiv.innerHTML = `
-            <p>✅ 成功取得 <strong>Authorization Code</strong>：</p>
-            <div class="code-box" id="authCode">${code}</div>
-            <button class="copy-btn" onclick="copyCode()">複製 Code</button>
-            <p><small>State: ${state || '無'}</small></p>
-            <p style="color: gray;">現在你可以把這串 Code 拿去跑 Python/Node.js 換取 Access Token 了！</p>
-        `;
-    } else {
-        contentDiv.innerHTML = `
-            <p>目前網址中沒有 code。</p>
-            <p>請確認你是從 TikTok 授權頁面跳轉回來的。</p>
-        `;
+        // 如果網址有 code，隱藏介紹，顯示測試結果
+        document.getElementById('product-info').style.display = 'none';
+        document.getElementById('debug-info').style.display = 'block';
+        document.getElementById('authCode').innerText = code;
+        if (state) {
+            document.getElementById('stateInfo').innerText = 'State: ' + state;
+        }
     }
 
     function copyCode() {
